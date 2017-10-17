@@ -1,4 +1,4 @@
-FROM linarotechnologies/alpine:edge
+FROM opensourcefoundries/alpine:edge
 
 RUN apk add --no-cache openjdk8-jre-base ca-certificates shadow curl runit
 

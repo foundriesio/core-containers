@@ -15,5 +15,5 @@ docker run --restart=always -d -t --net=host --read-only --tmpfs=/tmp --name les
 ## Run the pre-built container
 
 ```
-docker run --restart=always -d -t --net=host --read-only --tmpfs=/tmp --name leshan linarotechnologies/leshan:latest
+docker run --restart=always -d -t --net=host --read-only --tmpfs=/tmp --name leshan opensourcefoundries/leshan:latest
 ```

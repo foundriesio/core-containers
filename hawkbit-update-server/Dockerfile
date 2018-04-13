@@ -11,7 +11,7 @@ EXPOSE 8080
 RUN set -x \
     && apk add --no-cache gnupg unzip \
     && apk add --no-cache libressl wget \
-    && gpg --keyserver pgp.mit.edu --recv-keys 385CBC1C7F667FAE \
+    && gpg --keyserver keyserver.ubuntu.com --recv-keys 385CBC1C7F667FAE \
 
     && mkdir -p $HAWKBIT_HOME \
     && cd $HAWKBIT_HOME \

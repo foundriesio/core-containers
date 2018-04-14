@@ -2,7 +2,7 @@ FROM openjdk:8-jdk-alpine
 
 MAINTAINER Kai Zimmermann <kai.zimmermann@bosch-si.com>
 
-ENV HAWKBIT_VERSION=0.2.0M8 \
+ENV HAWKBIT_VERSION=0.2.0M4 \
     HAWKBIT_HOME=/opt/hawkbit
 
 # Http port

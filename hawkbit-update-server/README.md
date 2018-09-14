@@ -1,1 +1,1 @@
-# hawkbit x86, arm64, armhf
+A cross-platform container for the [hawkBit Update Server](http://repo1.maven.org/maven2/org/eclipse/hawkbit/hawkbit-update-server/)

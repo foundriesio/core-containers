@@ -1,0 +1,33 @@
+From 155a924f730633fd43ffc6c5a1a37dd49d3e9e2c Mon Sep 17 00:00:00 2001
+From: Michael Scott <mike@foundries.io>
+Date: Tue, 18 Sep 2018 10:50:31 -0700
+Subject: [PATCH] properties: allow anon access to DDI API
+
+This was changed in 0.2.0M5 and makes it very difficult to use the
+hawkbit-update-server for demo purposes as each device requires an
+Management API call to register the device's token with the server.
+
+Instead, let's continue to allow anonymous access and all agree not
+to use this patch in a production environment.
+
+Signed-off-by: Michael Scott <mike@foundries.io>
+---
+ .../src/main/resources/application.properties                   | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/hawkbit-runtime/hawkbit-update-server/src/main/resources/application.properties b/hawkbit-runtime/hawkbit-update-server/src/main/resources/application.properties
+index 3c2a50d3..0f8d0687 100644
+--- a/hawkbit-runtime/hawkbit-update-server/src/main/resources/application.properties
++++ b/hawkbit-runtime/hawkbit-update-server/src/main/resources/application.properties
+@@ -12,7 +12,7 @@ security.user.name=admin
+ security.user.password=admin
+ 
+ # DDI authentication configuration
+-hawkbit.server.ddi.security.authentication.anonymous.enabled=false
++hawkbit.server.ddi.security.authentication.anonymous.enabled=true
+ hawkbit.server.ddi.security.authentication.targettoken.enabled=true
+ hawkbit.server.ddi.security.authentication.gatewaytoken.enabled=true
+ 
+-- 
+2.17.1
+

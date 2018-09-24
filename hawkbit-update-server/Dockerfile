@@ -1,23 +1,17 @@
-FROM openjdk:8-jdk-alpine
+FROM openjdk:8-jre-alpine
 
-MAINTAINER Kai Zimmermann <kai.zimmermann@bosch-si.com>
+LABEL maintainer="kai.zimmermann@bosch-si.com"
+LABEL maintainer="mike@foundries.io"
 
-ENV HAWKBIT_VERSION=0.2.0M4 \
+ENV HAWKBIT_VERSION=0.2.1 \
     HAWKBIT_HOME=/opt/hawkbit
 
 # Http port
 EXPOSE 8080
 
-RUN set -x \
-    && apk add --no-cache gnupg unzip \
-    && apk add --no-cache libressl wget \
-    && gpg --keyserver keyserver.ubuntu.com --recv-keys 385CBC1C7F667FAE \
-
-    && mkdir -p $HAWKBIT_HOME \
-    && cd $HAWKBIT_HOME \
-    && wget -O hawkbit-update-server.jar --no-verbose http://repo1.maven.org/maven2/org/eclipse/hawkbit/hawkbit-update-server/$HAWKBIT_VERSION/hawkbit-update-server-$HAWKBIT_VERSION.jar \
-    && wget -O hawkbit-update-server.jar.asc --no-verbose http://repo1.maven.org/maven2/org/eclipse/hawkbit/hawkbit-update-server/$HAWKBIT_VERSION/hawkbit-update-server-$HAWKBIT_VERSION.jar.asc \
-    && gpg --batch --verify hawkbit-update-server.jar.asc hawkbit-update-server.jar
+RUN apk add --no-cache libressl
+RUN mkdir -p $HAWKBIT_HOME
+COPY hawkbit-update-server-$HAWKBIT_VERSION-SNAPSHOT.jar $HAWKBIT_HOME/hawkbit-update-server.jar
 
 VOLUME "$HAWKBIT_HOME/data"
 

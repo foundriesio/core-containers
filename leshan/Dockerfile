@@ -1,6 +1,6 @@
-FROM openjdk:8-jre-alpine
+FROM alpine:latest
 
-RUN apk add --no-cache shadow curl runit
+RUN apk add --no-cache shadow curl runit openjdk8-jre-base
 
 RUN mkdir -p /opt/leshan-server-demo && \
     curl -o /opt/leshan-server-demo/leshan-server-demo.jar \

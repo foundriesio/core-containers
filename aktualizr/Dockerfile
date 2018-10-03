@@ -31,7 +31,7 @@ RUN apk add --no-cache cmake git g++ make curl-dev libarchive-dev libsodium-dev 
 	&& make -C src/sota_tools -j`getconf _NPROCESSORS_ONLN`
 
 ## Stage 2
-FROM alpine:edge
+FROM alpine:latest
 WORKDIR /root/
 
 RUN apk add --no-cache bash glib libarchive libcurl libsodium openjdk8-jre-base ostree

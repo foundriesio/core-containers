@@ -27,7 +27,7 @@ RUN apk add --no-cache cmake git g++ make curl-dev libarchive-dev libsodium-dev 
 	&& sed -i '/GLOB_PERIOD/a #define GLOB_TILDE 4096' /usr/include/glob.h \
 	&& sed -i '/RSA_R_WRONG_SIGNATURE_LENGTH/a #define RSA_PKCS1_OpenSSL RSA_PKCS1_SSLeay' /usr/include/openssl/rsa.h \
 	&& sed -i 's/BIO_new_mem_buf(void/BIO_new_mem_buf(const void/' /usr/include/openssl/bio.h \
-	&& cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SOTA_TOOLS=ON -DBUILD_SYSTEMD=OFF .. \
+	&& cmake -DWARNING_AS_ERROR=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SOTA_TOOLS=ON -DBUILD_SYSTEMD=OFF .. \
 	&& make -C src/sota_tools -j`getconf _NPROCESSORS_ONLN`
 
 ## Stage 2

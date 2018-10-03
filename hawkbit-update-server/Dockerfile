@@ -1,4 +1,4 @@
-FROM openjdk:8-jre-alpine
+FROM alpine:latest
 
 LABEL maintainer="kai.zimmermann@bosch-si.com"
 LABEL maintainer="mike@foundries.io"
@@ -9,7 +9,7 @@ ENV HAWKBIT_VERSION=0.2.1 \
 # Http port
 EXPOSE 8080
 
-RUN apk add --no-cache libressl
+RUN apk add --no-cache libressl openjdk8-jre-base
 RUN mkdir -p $HAWKBIT_HOME
 COPY hawkbit-update-server-$HAWKBIT_VERSION-SNAPSHOT.jar $HAWKBIT_HOME/hawkbit-update-server.jar
 

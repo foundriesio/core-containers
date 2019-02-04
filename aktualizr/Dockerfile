@@ -31,6 +31,7 @@ WORKDIR /root/
 
 RUN apk add --no-cache bash glib libarchive libcurl libsodium openjdk8-jre-base ostree
 COPY ota-publish.sh /usr/bin/ota-publish
+COPY test.sh /test.sh
 COPY --from=0 /root/aktualizr/build-git/src/sota_tools/garage-check /usr/bin/
 COPY --from=0 /root/aktualizr/build-git/src/sota_tools/garage-deploy /usr/bin/
 COPY --from=0 /root/aktualizr/build-git/src/sota_tools/garage-push /usr/bin/

@@ -7,9 +7,6 @@ RUN apk add --no-cache cmake git g++ make curl-dev libarchive-dev libsodium-dev 
 	&& tar -xzf boost_1_57_0.tar.gz \
 	&& cd boost_1_57_0 \
 	&& ./bootstrap.sh --with-libraries="log,filesystem,program_options,system" \
-	&& mkdir /usr/include/linux \
-	&& echo "#define LINUX_VERSION_CODE 266507" >> /usr/include/linux/version.h \
-	&& echo "#define KERNEL_VERSION(a,b,c) (((a) << 16) + ((b) << 8) + (c))" >> /usr/include/linux/version.h \
 	&& ./b2 -j`getconf _NPROCESSORS_ONLN` install \
 	&& cd ../ \
 	&& git clone https://github.com/vlm/asn1c \
@@ -25,8 +22,6 @@ RUN apk add --no-cache cmake git g++ make curl-dev libarchive-dev libsodium-dev 
 	&& mkdir build-git \
 	&& cd build-git \
 	&& sed -i '/GLOB_PERIOD/a #define GLOB_TILDE 4096' /usr/include/glob.h \
-	&& sed -i '/RSA_R_WRONG_SIGNATURE_LENGTH/a #define RSA_PKCS1_OpenSSL RSA_PKCS1_SSLeay' /usr/include/openssl/rsa.h \
-	&& sed -i 's/BIO_new_mem_buf(void/BIO_new_mem_buf(const void/' /usr/include/openssl/bio.h \
 	&& cmake -DWARNING_AS_ERROR=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SOTA_TOOLS=ON -DBUILD_SYSTEMD=OFF .. \
 	&& make -C src/sota_tools -j`getconf _NPROCESSORS_ONLN`
 

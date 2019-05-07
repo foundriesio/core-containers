@@ -29,8 +29,9 @@ RUN apk add --no-cache cmake git g++ make curl-dev libarchive-dev libsodium-dev 
 FROM alpine:latest
 WORKDIR /root/
 
-RUN apk add --no-cache bash glib libarchive libcurl libsodium nss openjdk8-jre-base ostree
+RUN apk add --no-cache bash glib libarchive libcurl libsodium nss openjdk8-jre-base ostree python3 py3-requests
 COPY ota-publish.sh /usr/bin/ota-publish
+COPY ota-dockerapp.py /usr/bin/ota-dockerapp
 COPY test.sh /test.sh
 COPY --from=0 /root/aktualizr/build-git/src/sota_tools/garage-check /usr/bin/
 COPY --from=0 /root/aktualizr/build-git/src/sota_tools/garage-deploy /usr/bin/

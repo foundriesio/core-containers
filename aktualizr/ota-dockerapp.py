@@ -87,7 +87,7 @@ def merge(args):
 
     targets = data['targets']
     filename = os.path.basename(args.dockerapp) + '-' + args.version
-    app = filename.replace('.dockerapp', '')
+    app = filename[:filename.find('.dockerapp-')]
     assert filename in targets, '%s not in targets' % filename
 
     img = targets[args.ostree_branch + '-' + args.version]
